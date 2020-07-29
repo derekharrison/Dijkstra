@@ -109,8 +109,8 @@ float Dijkstra::avg_path() {
     float avg_path = 0.0;
 
     for(int i = 0; i < this->size_graph; i++) {
-        avg_path += sum_node[i];
+        avg_path += this->sum_node[i];
     }
 
-    return avg_path = avg_path / (size_graph - 1);
+    return avg_path = avg_path / (this->size_graph - 1);
 }
