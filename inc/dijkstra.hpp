@@ -12,7 +12,7 @@ class Dijkstra {
 private:
     int size_graph;
     bool** adj_mat;
-    float** weight2d;
+    float** weight_mat;
     float* sum_node;
     bool* visited;
     int* prev_vertex;
