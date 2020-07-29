@@ -11,7 +11,7 @@
 class Dijkstra {
 private:
     int size_graph;
-    bool** bool2d;
+    bool** adj_mat;
     float** weight2d;
     float* sum_node;
     bool* visited;

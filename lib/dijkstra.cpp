@@ -10,11 +10,11 @@
 #include "../inc/dijkstra.hpp"
 #include "../inc/functions.hpp"
 
-Dijkstra::Dijkstra(bool** bool2d, float** weight2d, int size_graph) {
+Dijkstra::Dijkstra(bool** adj_mat, float** weight2d, int size_graph) {
     this->size_graph = size_graph;
 
-    this->bool2d = bool2D(size_graph);
-    init_bool2d(this->bool2d, bool2d, size_graph);
+    this->adj_mat = bool2D(size_graph);
+    init_bool2d(this->adj_mat, adj_mat, size_graph);
 
     this->weight2d = float2D(size_graph);
     init_weight2d(this->weight2d, weight2d, size_graph);
@@ -29,7 +29,7 @@ Dijkstra::Dijkstra(bool** bool2d, float** weight2d, int size_graph) {
 }
 
 Dijkstra::~Dijkstra() {
-    delete_bool2D(this->bool2d, size_graph);
+    delete_bool2D(this->adj_mat, size_graph);
     delete_float2D(this->weight2d, size_graph);
     delete [] this->sum_node;
     delete [] this->visited;
@@ -53,7 +53,7 @@ void Dijkstra::dijkstra_algo() {
     while(unvisited_is_empty == false) {
         float min_dist = inf;
         for(int node = 0; node < size_graph; ++node) {
-            if(bool2d[current_node][node] && !visited[node] && sum_node[node] > sum_node[current_node] + weight2d[current_node][node]) {
+            if(adj_mat[current_node][node] && !visited[node] && sum_node[node] > sum_node[current_node] + weight2d[current_node][node]) {
                 sum_node[node] = sum_node[current_node] + weight2d[current_node][node];
                 prev_vertex[node] = current_node;
             }
@@ -88,7 +88,7 @@ void Dijkstra::print_adj_mat() {
     printf("adjancy matrix\n");
     for(int i = 0; i < this->size_graph; ++i) {
         for(int j = 0; j < this->size_graph; ++j) {
-            printf("(%i,%i): %d ", i, j, this->bool2d[i][j]);
+            printf("(%i,%i): %d ", i, j, this->adj_mat[i][j]);
         }
         printf("\n");
     }

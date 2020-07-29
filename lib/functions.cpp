@@ -45,10 +45,10 @@ void delete_float2D(float** p, int size) {
     delete [] p;
 }
 
-void init_bool2d(bool** bool2d, bool** bool2d_ref, int size_graph) {
+void init_bool2d(bool** adj_mat, bool** adj_mat_ref, int size_graph) {
     for(int i = 0; i < size_graph; ++i)
         for(int j = 0; j < size_graph; ++j) {
-            bool2d[i][j] = bool2d_ref[i][j];
+            adj_mat[i][j] = adj_mat_ref[i][j];
         }
 }
 
@@ -73,25 +73,25 @@ void init_visited(bool* visited, int size_graph) {
     }
 }
 
-void init_adj_and_weight(bool** bool2d, float** weight2d, int size_graph) {
+void init_adj_and_weight(bool** adj_mat, float** weight2d, int size_graph) {
     for(int i = 0; i < size_graph; ++i)
         for(int j = 0; j < size_graph; ++j) {
-            bool2d[i][j] = false;
+            adj_mat[i][j] = false;
             weight2d[i][j] = 0.0;
         }
 }
 
-void populate_adj_and_weight(bool** bool2d, float** weight2d, int size_graph, float density) {
+void populate_adj_and_weight(bool** adj_mat, float** weight2d, int size_graph, float density) {
     srand(time(NULL));
     float max_weight = 10;
     for(int i = 0; i < size_graph; ++i)
         for(int j = i; j < size_graph; ++j) {
             float rand_num = (float) rand() / RAND_MAX;
-                if(i != j) {
-                    bool2d[j][i] = bool2d[i][j] = rand_num > (1 - density);
-                    if(bool2d[i][j] == true) {
-                        weight2d[j][i] = weight2d[i][j] = max_weight * rand_num;
-                    }
-            }
+			if(i != j) {
+				adj_mat[j][i] = adj_mat[i][j] = rand_num > (1 - density);
+				if(adj_mat[i][j] == true) {
+					weight2d[j][i] = weight2d[i][j] = max_weight * rand_num;
+				}
+		    }
         }
 }
