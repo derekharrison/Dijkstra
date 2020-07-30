@@ -116,7 +116,7 @@ void Dijkstra::print_weight_mat() {
     printf("weight matrix\n");
     for(int i = 0; i < this->size_graph; ++i) {
         for(int j = 0; j < this->size_graph; ++j) {
-            printf("(%i,%i): %.1f ", i, j, this->weight_mat[i][j]);
+            printf("(%i,%i): %.2f ", i, j, this->weight_mat[i][j]);
         }
         printf("\n");
     }
