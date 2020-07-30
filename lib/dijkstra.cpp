@@ -77,11 +77,11 @@ bool Dijkstra::node_not_visited(int node) {
 }
 
 bool Dijkstra::is_connected(int node_a, int node_b) {
-	return this->adj_mat[node_a][node_b];
+    return this->adj_mat[node_a][node_b];
 }
 
 bool Dijkstra::curr_sum_greater(int node_a, int node_b) {
-	return this->sum_node[node_b] > this->sum_node[node_a] + this->weight_mat[node_a][node_b];
+    return this->sum_node[node_b] > this->sum_node[node_a] + this->weight_mat[node_a][node_b];
 }
 
 bool Dijkstra::check_unvisited() {
