@@ -23,7 +23,7 @@ private:
     int update_curr_node();
     bool check_unvisited();
 public:
-    Dijkstra(bool** bool2d, float** weight2d, int size_graph);
+    Dijkstra(bool** adj_mat, float** weight_mat, int size_graph);
     ~Dijkstra();
     void dijkstra_algo();
     void print_results();

@@ -14,10 +14,10 @@ Dijkstra::Dijkstra(bool** adj_mat, float** weight_mat, int size_graph) {
     this->size_graph = size_graph;
 
     this->adj_mat = bool2D(size_graph);
-    init_bool2d(this->adj_mat, adj_mat, size_graph);
+    init_adj_mat(this->adj_mat, adj_mat, size_graph);
 
     this->weight_mat = float2D(size_graph);
-    init_weight2d(this->weight_mat, weight_mat, size_graph);
+    init_weight_mat(this->weight_mat, weight_mat, size_graph);
 
     this->sum_node = new float[size_graph];
     init_sum_node(this->sum_node, size_graph);
@@ -80,8 +80,8 @@ bool Dijkstra::is_connected(int node_a, int node_b) {
     return this->adj_mat[node_a][node_b];
 }
 
-bool Dijkstra::curr_sum_greater(int node_a, int node_b) {
-    return this->sum_node[node_b] > this->sum_node[node_a] + this->weight_mat[node_a][node_b];
+bool Dijkstra::curr_sum_greater(int current_node, int node) {
+    return this->sum_node[node] > this->sum_node[current_node] + this->weight_mat[current_node][node];
 }
 
 bool Dijkstra::check_unvisited() {
