@@ -36,45 +36,62 @@ Dijkstra::~Dijkstra() {
     delete [] this->prev_vertex;
 }
 
-bool Dijkstra::check_unvisited(bool* visited, int size_graph) {
-    for(int i = 0; i < size_graph; ++i) {
-        if(visited[i] == false) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 void Dijkstra::dijkstra_algo() {
     int current_node = 0;
     int it_counter = 0;
-    bool unvisited_is_empty = check_unvisited(this->visited, this->size_graph);
+    bool unvisited_is_empty = Dijkstra::check_unvisited();
     while(unvisited_is_empty == false) {
-        float min_dist = inf;
-        for(int node = 0; node < size_graph; ++node) {
-            if(this->adj_mat[current_node][node] && !this->visited[node] &&
-               this->sum_node[node] > this->sum_node[current_node] + this->weight_mat[current_node][node]) {
+        for(int node = 0; node < this->size_graph; ++node) {
+            if(is_connected(current_node, node) && node_not_visited(node) && curr_sum_greater(current_node, node)) {
                 this->sum_node[node] = this->sum_node[current_node] + this->weight_mat[current_node][node];
                 this->prev_vertex[node] = current_node;
             }
         }
 
-        for(int node = 0; node < size_graph; ++node) {
-            if(min_dist > this->sum_node[node] && !this->visited[node]) {
-                min_dist = this->sum_node[node];
-                current_node = node;
-            }
-        }
-
+        current_node = Dijkstra::update_curr_node();
         this->visited[current_node] = true;
-        unvisited_is_empty = check_unvisited(this->visited, this->size_graph);
+        unvisited_is_empty = Dijkstra::check_unvisited();
         it_counter++;
         if(it_counter > this->size_graph + 2) {
             printf("Entered infinite loop, some vertices could not be reached\n");
             break;
         }
     }
+}
+
+int Dijkstra::update_curr_node() {
+    float min_dist = inf;
+    int current_node = 0;
+    for(int node = 0; node < this->size_graph; ++node) {
+        if(min_dist > this->sum_node[node] && node_not_visited(node)) {
+            min_dist = this->sum_node[node];
+            current_node = node;
+        }
+    }
+
+    return current_node;
+}
+
+bool Dijkstra::node_not_visited(int node) {
+    return !this->visited[node];
+}
+
+bool Dijkstra::is_connected(int node_a, int node_b) {
+	return this->adj_mat[node_a][node_b];
+}
+
+bool Dijkstra::curr_sum_greater(int node_a, int node_b) {
+	return this->sum_node[node_b] > this->sum_node[node_a] + this->weight_mat[node_a][node_b];
+}
+
+bool Dijkstra::check_unvisited() {
+    for(int i = 0; i < this->size_graph; ++i) {
+        if(this->visited[i] == false) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void Dijkstra::print_results() {

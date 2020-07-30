@@ -17,7 +17,11 @@ private:
     bool* visited;
     int* prev_vertex;
 
-    bool check_unvisited(bool* visited, int size_graph);
+    bool is_connected(int node_a, int node_b);
+    bool node_not_visited(int node);
+    bool curr_sum_greater(int node_a, int node_b);
+    int update_curr_node();
+    bool check_unvisited();
 public:
     Dijkstra(bool** bool2d, float** weight2d, int size_graph);
     ~Dijkstra();

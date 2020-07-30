@@ -20,4 +20,5 @@ void init_sum_node(float* sum_node, int size_graph);
 void init_visited(bool* visited, int size_graph);
 void init_adj_and_weight(bool** bool2d, float** weight2d, int size_graph);
 void populate_adj_and_weight(bool** bool2d, float** weight2d, int size_graph, float density);
+
 #endif /* FUNCTIONS_HPP_ */
