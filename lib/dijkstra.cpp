@@ -25,12 +25,12 @@ Dijkstra::Dijkstra(bool** adj_mat, float** weight_mat, int size_graph) {
     this->visited = new bool[size_graph];
     init_visited(this->visited, size_graph);
 
-    prev_vertex = new int[size_graph];
+    this->prev_vertex = new int[size_graph];
 }
 
 Dijkstra::~Dijkstra() {
-    delete_bool2D(this->adj_mat, size_graph);
-    delete_float2D(this->weight_mat, size_graph);
+    delete_bool2D(this->adj_mat, this->size_graph);
+    delete_float2D(this->weight_mat, this->size_graph);
     delete [] this->sum_node;
     delete [] this->visited;
     delete [] this->prev_vertex;
