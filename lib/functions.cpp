@@ -90,6 +90,7 @@ void populate_adj_and_weight(bool** adj_mat, float** weight2d, int size_graph, f
             if(i != j) {
                 adj_mat[i][j] = rand_num > (1 - density);
                 if(adj_mat[i][j] == true) {
+                	rand_num = (float) rand() / RAND_MAX;
                     weight2d[i][j] = max_weight * rand_num;
                 }
             }
