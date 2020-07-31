@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     bool** adj_mat = bool2D(size_graph);
     float** weight_mat = float2D(size_graph);
 
-    /* Populate matrices with random data */
+    /* Populate adjancy and weight matrices with random data */
     populate_adj_and_weight(adj_mat, weight_mat, size_graph, density_graph);
 
     /* Create Dijkstra algorithm object */
