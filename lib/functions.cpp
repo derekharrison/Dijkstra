@@ -5,10 +5,7 @@
  *      Author: d-w-h
  */
 
-#include <iostream>
-
 #include <stdlib.h>
-#include <stdio.h>
 #include <time.h>
 
 #include "../inc/functions.hpp"
