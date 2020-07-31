@@ -55,7 +55,7 @@ void init_adj_mat(bool** adj_mat, bool** adj_mat_ref, int size_graph) {
 void init_weight_mat(float** weight_mat, float** weight_mat_ref, int size_graph) {
     for(int i = 0; i < size_graph; ++i)
         for(int j = 0; j < size_graph; ++j) {
-        	weight_mat[i][j] = weight_mat_ref[i][j];
+            weight_mat[i][j] = weight_mat_ref[i][j];
         }
 }
 
@@ -83,7 +83,7 @@ void init_adj_and_weight(bool** adj_mat, float** weight_mat, int size_graph) {
 
 void populate_adj_and_weight(bool** adj_mat, float** weight_mat, int size_graph, float density) {
     init_adj_and_weight(adj_mat, weight_mat, size_graph);
-	srand(time(NULL));
+    srand(time(NULL));
     float max_weight = 10;
     for(int i = 0; i < size_graph; ++i)
         for(int j = 0; j < size_graph; ++j) {
