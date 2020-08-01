@@ -17,6 +17,8 @@ int main(int argc, char* argv[])
     float density_graph = 0.5;
     bool** adj_mat = bool2D(size_graph);
     float** weight_mat = float2D(size_graph);
+    float* distance_from_start = new float[size_graph];
+    int* prev_vertex = new int[size_graph];
 
     /* Populate adjancy and weight matrices with random data */
     populate_adj_and_weight(adj_mat, weight_mat, size_graph, density_graph);
@@ -32,6 +34,10 @@ int main(int argc, char* argv[])
 
     /* Execute Dijkstra algorithm */
     myg.dijkstra_algo();
+
+    /* Get data */
+    myg.get_sum_node(distance_from_start);
+    myg.get_prev_vertex(prev_vertex);
 
     /* Print results */
     myg.print_results();

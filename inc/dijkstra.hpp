@@ -30,6 +30,8 @@ public:
     void print_adj_mat();
     void print_weight_mat();
     float avg_path();
+    void get_sum_node(float* sum_node);
+    void get_prev_vertex(int* prev_vertex);
 };
 
 #endif /* DIJKSTRA_HPP_ */

@@ -131,3 +131,15 @@ float Dijkstra::avg_path() {
 
     return avg_path = avg_path / (this->size_graph - 1);
 }
+
+void Dijkstra::get_sum_node(float* sum_node) {
+    for(int i = 0; i < this->size_graph; i++) {
+        sum_node[i] = this->sum_node[i];
+    }
+}
+
+void Dijkstra::get_prev_vertex(int* prev_vertex) {
+    for(int i = 0; i < this->size_graph; i++) {
+        prev_vertex[i] = this->prev_vertex[i];
+    }
+}
