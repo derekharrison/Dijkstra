@@ -42,5 +42,11 @@ int main(int argc, char* argv[])
     /* Print results */
     myg.print_results();
 
+    /* Free data */
+    delete_bool2D(adj_mat, size_graph);
+    delete_float2D(weight_mat, size_graph);
+    delete [] distance_from_start;
+    delete [] prev_vertex;
+
     return 0;
 }
